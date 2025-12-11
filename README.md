@@ -1,9 +1,13 @@
 Unity 3D Chess AI (Minimax Implementation)
-這是一個基於 Unity 開發的 3D 西洋棋遊戲專案中的 AI 決策模組。本模組使用 C# 實作 Minimax (極小化極大演算法)，透過遞迴建立賽局樹 (Game Tree)，讓電腦對手能夠預測未來步數並做出最佳決策。
+這是一個基於 Unity 開發的 3D 西洋棋遊戲專案中的 AI 決策模組。
+本模組使用 C# 實作 Minimax (極小化極大演算法)，透過遞迴建立賽局樹 (Game Tree)，讓電腦對手能夠預測未來步數並做出最佳決策。
 
 功能特色 (Features)
+
 Minimax 演算法：模擬雙方（AI 與玩家）的最佳策略，尋找全域最佳解。
+
 遞迴決策 (Recursive Decision Making)：支援設定搜尋深度 (Depth)，平衡運算效能與 AI 智力。
+
 盤面評估 (Heuristic Evaluation)：基於棋子數量 (Material) 與位置優勢 (Position) 計算當前局勢分數。
 
 核心邏輯 (Core Logic)
@@ -16,3 +20,13 @@ Minimizing Player (Opponent)：假設對手會選擇對 AI 最不利（分數最
 當遞迴達到指定深度 (Depth = 0) 或遊戲結束時，EvaluateBoard 函式會計算靜態分數：
 Material Score：計算雙方剩餘棋子的價值總和。
 Positional Score：根據棋盤控制權（如是否佔領中心格）給予額外加分。
+
+程式碼說明 (Code Structure)
+
+主要類別 ChessAI 包含以下三個核心方法：
+
+GetBestMoveAI 的入口點。遍歷所有可能的首步，呼叫 Minimax 評估後回傳最佳步數。
+
+Minimax核心遞迴函式。模擬未來回合的攻防，交替切換 Max/Min 視角計算分數。
+
+EvaluateBoard啟發式評估函式。將棋盤狀態量化為數值（正分代表 AI 優勢，負分代表玩家優勢）。
